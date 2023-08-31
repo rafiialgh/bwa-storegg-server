@@ -20,10 +20,10 @@ let voucherSchema = mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "Nominal",
   }],
-  price: {
-    type: Number,
-    default: 0,
-  },
+  user: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User",
+  }
 });
 
 module.exports = mongoose.model("Voucher", voucherSchema);
