@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+
 let voucherSchema = mongoose.Schema({
   name: {
     type: String,

@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+
 let nominalSchema = mongoose.Schema({
   coinQuantity: {
     type: Number,
