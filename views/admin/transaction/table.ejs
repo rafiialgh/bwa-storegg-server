@@ -1,0 +1,76 @@
+<table id="example2" class="table table-bordered table-hover">
+  <thead>
+    <tr>
+      <th>No.</th>
+      <th>Nama game</th>
+      <th>Item</th>
+      <th>Total harga</th>
+      <th>Status</th>
+      <th>Nama player</th>
+      <th>Aksi</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% transaction.forEach((item, index)=> { %>
+      <tr>
+        <td>
+          <%= index + 1 %>
+        </td>
+        <td>
+          <ul class="list-inline">
+            <li class="list-inline-item">
+              <img width="48px" height="48px"
+                src="http://localhost:3000/uploads/<%= item.historyVoucherTopup?.thumbnail %>" alt="thumbnail">
+            </li>
+          </ul>
+          <%= item?.historyVoucherTopup?.gameName %>
+            <br>
+            <%= item?.historyVoucherTopup?.category %>
+        </td>
+        <td>
+          <%= item?.historyVoucherTopup?.coinQuantity %>
+            <%= item?.historyVoucherTopup?.coinName %>
+        </td>
+        <td>
+          <%= item.value %>
+        </td>
+        <td>
+          <% if (item.status==='pending' ) { %>
+            <span class="badge badge-warning">
+              <%= item.status %>
+            </span>
+            <% } else if (item.status==='success' ) { %>
+              <span class="badge badge-success">
+                <%= item.status %>
+              </span>
+              <% } else { %>
+                <span class="badge badge-danger">
+                  <%= item.status %>
+                </span>
+                <% } %>
+        </td>
+        <td>
+          <%= item?.player?.name ?? '-' %>
+        </td>
+        <td>
+          <% if (item.status === "pending") { %>
+            <form style="display: inline-block;" action="/transaction/status/<%= item.id %>?status=success&_method=PUT" method="POST">
+              <button class="btn btn-info btn-sm">
+                <i class="fas fa-check"></i>
+                Accept
+              </button>
+            </form>
+            <form style="display: inline-block;" action="/transaction/status/<%= item.id %>?status=failed&_method=PUT" method="POST">
+              <button class="btn btn-danger btn-sm">
+                <i class="fas fa-times-circle"></i>
+                Reject
+              </button>
+            </form>
+            <% } else { %>
+
+              <% } %>
+        </td>
+      </tr>
+      <% }) %>
+  </tbody>
+</table>
