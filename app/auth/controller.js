@@ -81,7 +81,7 @@ module.exports = {
             }
           }, config.jwtKey)
           res.status(200).json({
-            data: token
+            data: { token }
           })
         } else {
           res.status(403).json({
