@@ -1,0 +1,6 @@
+{
+  "version": 2,
+  "name": "bwa-storegg-server",
+  "builds": [{ "src": "./bin/www", "use": "@vercel/node-server" }],
+  "routes": [{ "src": "/(.*)", "dest": "./bin/www" }]
+}
