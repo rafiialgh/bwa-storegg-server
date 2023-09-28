@@ -16,7 +16,6 @@ module.exports = {
       } else {
         res.redirect("/dashboard");
       }
-
     } catch (err) {
       req.flash("alertMessage", `${err.message}`);
       req.flash("alertStatus", "danger");
@@ -27,7 +26,6 @@ module.exports = {
     try {
       const { email, password } = req.body;
       const check = await User.findOne({ email: email });
-
       if (check) {
         if (check.status === "Y") {
           const checkPassword = await bcrypt.compare(password, check.password);

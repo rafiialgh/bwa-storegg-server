@@ -1,38 +1,38 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose')
 
 let transactionSchema = mongoose.Schema(
   {
     historyVoucherTopup: {
-      gameName: { type: String, require: [true, "Nama game harus diisi"] },
-      category: { type: String, require: [true, "Category harus diisi"] },
+      gameName: { type: String, require: [true, 'Nama game harus diisi'] },
+      category: { type: String, require: [true, 'Category harus diisi'] },
       thumbnail: { type: String },
-      coinName: { type: String, require: [true, "Nama koin harus diisi"] },
+      coinName: { type: String, require: [true, 'Nama koin harus diisi'] },
       coinQuantity: {
         type: String,
-        require: [true, "Jumlah koin harus diisi"],
+        require: [true, 'Jumlah koin harus diisi'],
       },
       price: { type: Number },
     },
     historyPayment: {
-      name: { type: String, require: [true, "Nama harus diisi"] },
-      type: { type: String, require: [true, "Type pembayaran harus diisi"] },
-      bankName: { type: String, require: [true, "Nama bank harus diisi"] },
+      name: { type: String, require: [true, 'Nama harus diisi'] },
+      type: { type: String, require: [true, 'Type pembayaran harus diisi'] },
+      bankName: { type: String, require: [true, 'Nama bank harus diisi'] },
       noRekening: {
         type: String,
-        require: [true, "Nomor rekening harus diisi"],
+        require: [true, 'Nomor rekening harus diisi'],
       },
     },
     name: {
       type: String,
-      require: [true, "Nama harus diisi"],
-      maxLength: [225, "Panjang nama harus antara 3 - 225 karakter"],
-      minLength: [3, "Panjang nama harus antara 3 - 225 karakter"],
+      require: [true, 'Nama harus diisi'],
+      maxLength: [225, 'Panjang nama harus antara 3 - 225 karakter'],
+      minLength: [3, 'Panjang nama harus antara 3 - 225 karakter'],
     },
     accountUser: {
       type: String,
-      require: [true, "Nama harus diisi"],
-      maxLength: [225, "Panjang nama harus antara 3 - 225 karakter"],
-      minLength: [3, "Panjang nama harus antara 3 - 225 karakter"],
+      require: [true, 'Nama harus diisi'],
+      maxLength: [225, 'Panjang nama harus antara 3 - 225 karakter'],
+      minLength: [3, 'Panjang nama harus antara 3 - 225 karakter'],
     },
     tax: {
       type: Number,
@@ -44,32 +44,32 @@ let transactionSchema = mongoose.Schema(
     },
     status: {
       type: String,
-      enum: ["pending", "succes", "failed"],
-      default: "pending",
+      enum: ['pending', 'success', 'failed'],
+      default: 'pending',
     },
     player: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "Player",
+      ref: 'Player',
     },
     historyUser: {
-      name: { type: String, require: [true, "Nama player harus diisi"] },
+      name: { type: String, require: [true, 'Nama player harus diisi'] },
       phoneNumber: {
         type: Number,
-        require: [true, "No Telephone harus diisi"],
-        maxLength: [13, "Panjang nama harus antara 9 - 13 karakter"],
-        minLength: [9, "Panjang nama harus antara 9 - 13 karakter"],
+        require: [true, 'No Telephone harus diisi'],
+        maxLength: [13, 'Panjang nama harus antara 9 - 13 karakter'],
+        minLength: [9, 'Panjang nama harus antara 9 - 13 karakter'],
       },
     },
     category: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "Category",
+      ref: 'Category',
     },
     user: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "User",
-    }
+      ref: 'User',
+    },
   },
   { timestamps: true }
-);
+)
 
-module.exports = mongoose.model("Transaction", transactionSchema);
+module.exports = mongoose.model('Transaction', transactionSchema)
