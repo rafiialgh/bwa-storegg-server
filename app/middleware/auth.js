@@ -26,7 +26,7 @@ module.exports = {
       next()
     } catch (err) {
       return res.status(401).json({
-        error:  'Not authorized to acces this resource'
+        error:  'Not authorized to access this resource'
       })
     }
   }
