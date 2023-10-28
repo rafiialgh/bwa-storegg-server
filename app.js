@@ -3,24 +3,26 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-const methodOverride = require("method-override");
+const methodOverride = require('method-override')
 const session = require('cookie-session')
 const flash = require('connect-flash');
 var cors = require('cors')
 
-var dashboardRouter = require('./app/dashboard/router');
-var categoryRouter = require('./app/category/router');
-var nominalRouter = require('./app/nominal/router');
-var voucherRouter = require('./app/voucher/router');
-var bankRouter = require('./app/bank/router');
-var paymentRouter = require('./app/payment/router');
-var usersRouter = require('./app/users/router');
-var transactionRouter = require('./app/transaction/router');
-var playerRouter = require('./app/player/router');
-var authRouter = require('./app/auth/router');
 
-var app = express();
-var URL = '/api/v1'
+
+const dashboardRouter = require('./app/dashboard/router');
+const categoryRouter = require('./app/category/router');
+const nominalRouter = require('./app/nominal/router');
+const voucherRouter = require('./app/voucher/router');
+const bankRouter = require('./app/bank/router');
+const paymentRouter = require('./app/payment/router');
+const usersRouter = require('./app/users/router');
+const transactionRouter = require('./app/transaction/router');
+const playerRouter = require('./app/player/router');
+const authRouter = require('./app/auth/router');
+
+const app = express();
+const URL = `/api/v1`
 app.use(cors())
 
 // view engine setup
@@ -34,13 +36,13 @@ app.use(session({
   cookie: {}
 }))
 app.use(flash());
-app.use(methodOverride("_method"));
+app.use(methodOverride('_method'))
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use('/adminlte', express.static(path.join(__dirname, 'node_modules/admin-lte')));
+app.use('/adminlte', express.static(path.join(__dirname, '/node_modules/admin-lte/')));
 
 app.use('/', usersRouter);
 app.use('/dashboard', dashboardRouter);
@@ -51,17 +53,16 @@ app.use('/bank', bankRouter);
 app.use('/payment', paymentRouter);
 app.use('/transaction', transactionRouter);
 
-//api
+// api
 app.use(`${URL}/players`, playerRouter);
 app.use(`${URL}/auth`, authRouter);
-
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   next(createError(404));
 });
 
 // error handler
-app.use(function(err, req, res, next) {
+app.use(function (err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
