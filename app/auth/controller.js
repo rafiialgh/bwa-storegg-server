@@ -16,7 +16,7 @@ module.exports = {
             req.file.originalname.split(".")[
             req.file.originalname.split(".").length - 1
                 ];
-        let filename = req.file.filename + "." + originalExt;
+        let fgilename = req.file.filename + "." + originalExt;
         let target_path = path.resolve(
             config.rootPath,
             `public/uploads/${filename}`
@@ -54,6 +54,7 @@ module.exports = {
       }
     } catch (err) {
       if (err && err.name === "ValidationError") {
+        console.log('Errorrrrr')
         return res.status(422).json({
           message: err.message,
           error: 1,
